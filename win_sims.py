@@ -223,7 +223,7 @@ def plot_sims(avg_games_needed, rank_df, useful_ranks):
     # Custom title w custom font
     fig.suptitle(f'Given a {win_rate:.3f} Win Rate{points_text}, it will\ntake {avg_games_needed:,.0f}{addl_text} games to hit Master Ball rank',y=1,
                  fontproperties=prop,
-                 fontsize=15
+                 fontsize=12
                  )
     sns.despine(left=True,bottom=True)
     st.pyplot(fig)

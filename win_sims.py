@@ -11,6 +11,8 @@ from PIL import Image
 from tempfile import NamedTemporaryFile
 from urllib.request import urlopen
 
+st.set_page_config(page_title='Pokémon TCGP Ranked Sims', page_icon='https://assets.pokemon.com/static2/_ui/img/favicon.ico')
+
 ### Styling
 text_color = '#ffcb00'
 background_color = '#1a3871'

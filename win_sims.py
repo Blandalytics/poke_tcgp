@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import stqdm
+from stqdm import stqdm
 import matplotlib as mpl
 import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt

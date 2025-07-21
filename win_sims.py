@@ -245,4 +245,41 @@ def load_logo():
     
 logo = load_logo()
 st.image(logo, width=200)
-st.write('Find me at [@blandalytics.pitcherlist.com](https://bsky.app/profile/blandalytics.pitcherlist.com)')
+st.write('Find me at [blandalytics.pitcherlist.com](https://bsky.app/profile/blandalytics.pitcherlist.com)\n')
+st.header('Assumptions')
+st.write(
+    '''
+    The basis for these assumptions can be found [here](https://www.pokemon-zone.com/articles/ranked-match-guide-tcg-pocket/). 
+    Win Streak Bonuses: 
+    - 2 Wins: 3 pts 
+    - 3 Wins: 6 pts 
+    - 4 Wins: 9 pts 
+    - 5+ Wins: 12 pts 
+    
+    Loss Penalties: 
+    - Beginner: 0 pts 
+    - Poké Ball: 0 pts 
+    - Great Ball: -5 pts 
+    - Ultra Ball: -7 pts 
+    - Master Ball: -10 pts
+    
+    Point threshold per rank: 
+    - Beginner 1: 0 pts 
+    - Beginner 2: 20 pts 
+    - Beginner 3: 50 pts 
+    - Beginner 4: 95 pts 
+    - Poké Ball 1: 145 pts 
+    - Poké Ball 2: 195 pts 
+    - Poké Ball 3: 245 pts 
+    - Poké Ball 4: 300 pts 
+    - Great Ball 1: 355 pts
+    - Great Ball 2: 420 pts
+    - Great Ball 3: 490 pts
+    - Great Ball 4: 600 pts 
+    - Ultra Ball 1: 710 pts 
+    - Ultra Ball 2: 860 pts 
+    - Ultra Ball 3: 1010 pts 
+    - Ultra Ball 4: 1225 pts 
+    - Master Ball: 1450 pts
+    '''
+)

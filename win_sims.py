@@ -199,7 +199,7 @@ def plot_sims(avg_games_needed, rank_df, useful_ranks):
         avg_games = rank_df[season_rank].mean()
         ax.axvline(avg_games,
                    color=ball_colors[season_rank][1],
-                   ymax=vert_frac*0.75,
+                   ymax=vert_frac*0.85,
                    linewidth=2)
         ax.text(avg_games,
                 ax.get_ylim()[1]*vert_frac*0.85,

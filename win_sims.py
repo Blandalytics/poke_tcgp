@@ -250,6 +250,7 @@ st.header('Assumptions')
 st.write(
     '''
     The basis for these assumptions can be found [here](https://www.pokemon-zone.com/articles/ranked-match-guide-tcg-pocket/). 
+    
     Win Streak Bonuses: 
     - 2 Wins: 3 pts 
     - 3 Wins: 6 pts 

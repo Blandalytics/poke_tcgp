@@ -113,9 +113,11 @@ initial_rank = [(ball_rank, points) for ball_rank, points in ball_ranks.items() 
 total_games_needed = []
 rank_games_needed = []
 
-for season in stqdm(range(sim_seasons), 
-                    desc=f"Challenging ~{needed_battles/1000000:,.1f}M trainers to battle",
-                    bar_format=''):
+progress_text = f"Challenging ~{needed_battles/1000000:,.1f}M trainers to battle"
+my_bar = st.progress(0, text=progress_text)
+
+for season in range(sim_seasons):
+    my_bar.progress(season + 1, text=progress_text)
     win_streak = 0
     season_points = initial_points
     current_rank = initial_rank
@@ -150,7 +152,7 @@ rank_df = pd.DataFrame(rank_games_needed)
 
 useful_ranks = ['Poké Ball','Great Ball','Ultra Ball','Master Ball']
 useful_ranks = [x for x in useful_ranks if x in games_needed.keys()]
-
+my_bar.empty()
     # return avg_games_needed, rank_df, useful_ranks
 
 # avg_games_needed, rank_df, useful_ranks = season_sim()

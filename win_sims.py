@@ -13,7 +13,13 @@ from urllib.request import urlopen
 
 st.set_page_config(page_title='Pokémon TCGP Ranked Sims', page_icon='https://assets.pokemon.com/static2/_ui/img/favicon.ico')
 st.title('Pokémon TCGP Ranked Sims')
-st.text('Enter a Win Rate and initial number of points and this app will simulate thousands of seasons at that win rate and starting points value to determine how many games need to be played to reach Master Ball rank. Seasons take into consideration win streaks and rank-specific loss penalties.')
+st.text(
+    '''
+    Enter a Win Rate and initial number of points and this app will simulate thousands of seasons at that win rate and starting points value to determine how many games need to be played to reach Master Ball rank. 
+    Seasons take into consideration win streak bonuses and rank-specific loss penalties. 
+    Win rates under 0.400 take too long to simulate, and aren't guaranteed to reach Master Ball rank
+    '''
+)
 
 ### Styling
 text_color = '#ffcb00'

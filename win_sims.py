@@ -115,7 +115,7 @@ rank_games_needed = []
 
 for season in stqdm(range(sim_seasons), 
                     desc=f"Challenging ~{needed_battles/1000000:,.1f}M trainers to battle",
-                    bar_format=None):
+                    bar_format=''):
     win_streak = 0
     season_points = initial_points
     current_rank = initial_rank

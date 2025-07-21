@@ -117,7 +117,7 @@ progress_text = f"Challenging ~{needed_battles/1000000:,.1f}M trainers to battle
 my_bar = st.progress(0, text=progress_text)
 
 for season in range(sim_seasons):
-    my_bar.progress(season + 1, text=progress_text)
+    my_bar.progress((season + 1)/sim_seasons, text=progress_text)
     win_streak = 0
     season_points = initial_points
     current_rank = initial_rank

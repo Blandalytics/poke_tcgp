@@ -101,54 +101,54 @@ win_rate = st.number_input("Enter a Win rate: ", min_value=0.4, max_value=0.8,va
 initial_points = st.number_input("Starting Points: ", min_value=0, max_value=1225)
 
 # Sim seasons
-def season_sim(win_rate=win_rate,initial_points=initial_points):
-    # Derived Variables
-    sim_seasons = int(round(1000*10**(10*(min(win_rate,0.5)-0.4))))
-    needed_battles = int(win_rate_dict[int(round(win_rate*100,0))/100]*sim_seasons)
-    
-    initial_rank = [(ball_rank, points) for ball_rank, points in ball_ranks.items() if initial_points >= points][-1][0]
-    
-    total_games_needed = []
-    rank_games_needed = []
-    
-    for season in tqdm.trange(sim_seasons, desc=f"Challenging ~{needed_battles/1000000:,.1f}M trainers to battle",
-                              bar_format="{l_bar}{bar}"):
-        win_streak = 0
-        season_points = initial_points
-        current_rank = initial_rank
-        games_played = 0
-        games_needed = {'Beginner':0}
-        wins = 0
-        while season_points < ball_ranks['Master Ball 1']:
-            games_played += 1
-            if np.random.random() <= win_rate:
-                wins += 1
-                sim_win_rate = wins/games_played
-                win_streak += 1
-                season_points += WIN_POINTS + streak_points[min(5,win_streak)]
-                new_rank = [(tool, value) for tool, value in ball_ranks.items() if season_points >= value][-1][0]
-                if current_rank != new_rank:
-                    current_rank = new_rank
-                if new_rank[:-2] not in games_needed.keys():
-                  games_needed.update({new_rank[:-2]:games_played})
-            else:
-                sim_win_rate = wins/games_played
-                win_streak = 0
-                season_points += loss_points[current_rank[:-2]]
-                new_rank = [(tool, value) for tool, value in ball_ranks.items() if season_points >= value][-1][0]
-                if current_rank != new_rank:
-                    current_rank = new_rank
-        rank_games_needed += [games_needed]
-        total_games_needed += [games_played]
-    if initial_rank[:-2] in games_needed.keys():
-        games_needed.pop(initial_rank[:-2],None)
-    avg_games_needed = sum(total_games_needed)/len(total_games_needed)
-    rank_df = pd.DataFrame(rank_games_needed)
-    
-    useful_ranks = ['Poké Ball','Great Ball','Ultra Ball','Master Ball']
-    useful_ranks = [x for x in useful_ranks if x in games_needed.keys()]
+# def season_sim(win_rate=win_rate,initial_points=initial_points):
+# Derived Variables
+sim_seasons = int(round(1000*10**(10*(min(win_rate,0.5)-0.4))))
+needed_battles = int(win_rate_dict[int(round(win_rate*100,0))/100]*sim_seasons)
 
-    return avg_games_needed, rank_df, useful_ranks
+initial_rank = [(ball_rank, points) for ball_rank, points in ball_ranks.items() if initial_points >= points][-1][0]
+
+total_games_needed = []
+rank_games_needed = []
+
+for season in tqdm.trange(sim_seasons, desc=f"Challenging ~{needed_battles/1000000:,.1f}M trainers to battle",
+                          bar_format="{l_bar}{bar}"):
+    win_streak = 0
+    season_points = initial_points
+    current_rank = initial_rank
+    games_played = 0
+    games_needed = {'Beginner':0}
+    wins = 0
+    while season_points < ball_ranks['Master Ball 1']:
+        games_played += 1
+        if np.random.random() <= win_rate:
+            wins += 1
+            sim_win_rate = wins/games_played
+            win_streak += 1
+            season_points += WIN_POINTS + streak_points[min(5,win_streak)]
+            new_rank = [(tool, value) for tool, value in ball_ranks.items() if season_points >= value][-1][0]
+            if current_rank != new_rank:
+                current_rank = new_rank
+            if new_rank[:-2] not in games_needed.keys():
+              games_needed.update({new_rank[:-2]:games_played})
+        else:
+            sim_win_rate = wins/games_played
+            win_streak = 0
+            season_points += loss_points[current_rank[:-2]]
+            new_rank = [(tool, value) for tool, value in ball_ranks.items() if season_points >= value][-1][0]
+            if current_rank != new_rank:
+                current_rank = new_rank
+    rank_games_needed += [games_needed]
+    total_games_needed += [games_played]
+if initial_rank[:-2] in games_needed.keys():
+    games_needed.pop(initial_rank[:-2],None)
+avg_games_needed = sum(total_games_needed)/len(total_games_needed)
+rank_df = pd.DataFrame(rank_games_needed)
+
+useful_ranks = ['Poké Ball','Great Ball','Ultra Ball','Master Ball']
+useful_ranks = [x for x in useful_ranks if x in games_needed.keys()]
+
+    # return avg_games_needed, rank_df, useful_ranks
 
 # avg_games_needed, rank_df, useful_ranks = season_sim()
 
@@ -220,4 +220,4 @@ def plot_sims(avg_games_needed, rank_df, useful_ranks):
                  )
     sns.despine(left=True,bottom=True)
     st.pyplot(fig)
-plot_sims(season_sim())
+plot_sims(avg_games_needed, rank_df, useful_ranks)

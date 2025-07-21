@@ -97,7 +97,9 @@ win_rate_dict = {
     }
 
 # Input Variables
-win_rate = st.number_input("Enter a Win rate: ", min_value=0.4, max_value=0.8,value=0.6,step=0.001)
+win_rate = st.number_input("Enter a Win rate: ", 
+                           min_value=0.4, max_value=0.8, value=0.6,
+                           step=0.001, format="%0.3f")
 initial_points = st.number_input("Starting Points: ", min_value=0, max_value=1225)
 
 # Sim seasons

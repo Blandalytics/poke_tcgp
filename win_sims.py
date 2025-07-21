@@ -96,25 +96,31 @@ win_rate_dict = {
     0.8: 117.115
     }
 
+col1, col2, col3 = st.columns(3)
 # Input Variables
-win_rate = st.number_input("Enter a Win rate: ", 
-                           min_value=0.4, max_value=0.8, value=0.6,
-                           step=0.001, format="%0.3f")
-initial_points = st.number_input("Starting Points: ", min_value=0, max_value=1225)
+with col1:
+    win_rate = st.number_input("Enter a Win rate: ", 
+                               min_value=0.4, max_value=0.8, value=0.6,
+                               step=0.001, format="%0.3f")
+with col2:
+    initial_points = st.number_input("Starting Points: ", min_value=0, max_value=1225)
+    sim_seasons = int(round(1000*10**(10*(min(win_rate,0.5)-0.4))))
+    needed_battles = int(win_rate_dict[int(round(win_rate*100,0))/100]*sim_seasons)
+    
+    initial_rank = [(ball_rank, points) for ball_rank, points in ball_ranks.items() if initial_points >= points][-1][0]
+    
+    total_games_needed = []
+    rank_games_needed = []
+    
+    progress_text = f"Challenging {needed_battles/1000000:,.1f}M trainers to battle"
+    my_bar = st.progress(0, text=progress_text)
+with col3:
+    st.button("Simulate")
 
 # Sim seasons
 # def season_sim(win_rate=win_rate,initial_points=initial_points):
 # Derived Variables
-sim_seasons = int(round(1000*10**(10*(min(win_rate,0.5)-0.4))))
-needed_battles = int(win_rate_dict[int(round(win_rate*100,0))/100]*sim_seasons)
 
-initial_rank = [(ball_rank, points) for ball_rank, points in ball_ranks.items() if initial_points >= points][-1][0]
-
-total_games_needed = []
-rank_games_needed = []
-
-progress_text = f"Challenging ~{needed_battles/1000000:,.1f}M trainers to battle"
-my_bar = st.progress(0, text=progress_text)
 
 for season in range(sim_seasons):
     my_bar.progress((season + 1)/sim_seasons, text=progress_text)
@@ -153,9 +159,6 @@ rank_df = pd.DataFrame(rank_games_needed)
 useful_ranks = ['Poké Ball','Great Ball','Ultra Ball','Master Ball']
 useful_ranks = [x for x in useful_ranks if x in games_needed.keys()]
 my_bar.empty()
-    # return avg_games_needed, rank_df, useful_ranks
-
-# avg_games_needed, rank_df, useful_ranks = season_sim()
 
 # Initiate figure
 def plot_sims(avg_games_needed, rank_df, useful_ranks):

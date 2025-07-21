@@ -160,7 +160,7 @@ my_bar.empty()
 
 # Initiate figure
 def plot_sims(avg_games_needed, rank_df, useful_ranks):
-    fig, ax = plt.subplots(figsize=(12,4))
+    fig, ax = plt.subplots(figsize=(10,4))
     
     # Loop through ranks
     for season_rank in useful_ranks:

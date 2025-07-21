@@ -228,3 +228,12 @@ def plot_sims(avg_games_needed, rank_df, useful_ranks):
     sns.despine(left=True,bottom=True)
     st.pyplot(fig)
 plot_sims(avg_games_needed, rank_df, useful_ranks)
+
+def load_logo():
+    logo_loc = 'https://github.com/Blandalytics/poke_tcgp/blob/main/blandalytics_poke.png?raw=true'
+    img_url = urlopen(logo_loc)
+    logo = Image.open(img_url)
+    return logo
+    
+logo = load_logo()
+st.image(logo, width=200)

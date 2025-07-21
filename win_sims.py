@@ -183,7 +183,7 @@ def plot_sims(avg_games_needed, rank_df, useful_ranks):
     
     ## Chart formatting
     # Add gutter to the horizontal ends of the chart
-    x_axis_buffer = rank_df[useful_ranks].max().max()/20
+    x_axis_buffer = rank_df[useful_ranks].max().max()/10
     ax.set(xlim=(-x_axis_buffer,
                  rank_df[useful_ranks].max().max()+x_axis_buffer),
            ylim=(ax.get_ylim()[1]*0.0025,ax.get_ylim()[1]*1.5)

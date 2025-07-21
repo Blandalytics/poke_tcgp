@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import tqdm
+import stqdm
 import matplotlib as mpl
 import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
@@ -111,8 +111,8 @@ initial_rank = [(ball_rank, points) for ball_rank, points in ball_ranks.items() 
 total_games_needed = []
 rank_games_needed = []
 
-for season in tqdm.trange(sim_seasons, desc=f"Challenging ~{needed_battles/1000000:,.1f}M trainers to battle",
-                          bar_format="{l_bar}{bar}"):
+for season in stqdm(range(sim_seasons, desc=f"Challenging ~{needed_battles/1000000:,.1f}M trainers to battle",
+                          bar_format="{l_bar}{bar}")):
     win_streak = 0
     season_points = initial_points
     current_rank = initial_rank

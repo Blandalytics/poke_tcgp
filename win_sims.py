@@ -113,7 +113,8 @@ with col2:
     rank_games_needed = []
     
     progress_text = f"Challenging {needed_battles/1000000:,.1f}M trainers to battle"
-    my_bar = st.progress(0, text=progress_text)
+
+my_bar = st.progress(0, text=progress_text)
 
 for season in range(sim_seasons):
     my_bar.progress((season + 1)/sim_seasons, text=progress_text)

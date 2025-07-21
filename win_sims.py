@@ -206,7 +206,7 @@ def plot_sims(avg_games_needed, rank_df, useful_ranks):
                 f'{season_rank}\n{avg_games:,.0f} games',
                 ha='left',
                 va='center',
-                fontsize=10,
+                fontsize=12,
                 color=ball_colors[season_rank][1],
                 fontproperties=prop,
                 bbox={'facecolor':ball_colors[season_rank][0],
@@ -222,7 +222,8 @@ def plot_sims(avg_games_needed, rank_df, useful_ranks):
     
     # Custom title w custom font
     fig.suptitle(f'Given a {win_rate:.3f} Win Rate{points_text}, it will\ntake {avg_games_needed:,.0f}{addl_text} games to hit Master Ball rank',y=1,
-                 fontproperties=prop
+                 fontproperties=prop,
+                 fontsize=15
                  )
     sns.despine(left=True,bottom=True)
     st.pyplot(fig)

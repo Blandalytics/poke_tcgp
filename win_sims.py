@@ -96,14 +96,14 @@ win_rate_dict = {
     0.8: 117.115
     }
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 # Input Variables
 with col1:
-    win_rate = st.number_input("Enter a Win rate: ", 
+    win_rate = st.number_input("Win rate:", 
                                min_value=0.4, max_value=0.8, value=0.6,
                                step=0.001, format="%0.3f")
 with col2:
-    initial_points = st.number_input("Starting Points: ", min_value=0, max_value=1225)
+    initial_points = st.number_input("Starting Points:", min_value=0, max_value=1225)
     sim_seasons = int(round(1000*10**(10*(min(win_rate,0.5)-0.4))))
     needed_battles = int(win_rate_dict[int(round(win_rate*100,0))/100]*sim_seasons)
     
@@ -114,13 +114,6 @@ with col2:
     
     progress_text = f"Challenging {needed_battles/1000000:,.1f}M trainers to battle"
     my_bar = st.progress(0, text=progress_text)
-with col3:
-    st.button("Simulate")
-
-# Sim seasons
-# def season_sim(win_rate=win_rate,initial_points=initial_points):
-# Derived Variables
-
 
 for season in range(sim_seasons):
     my_bar.progress((season + 1)/sim_seasons, text=progress_text)

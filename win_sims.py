@@ -16,8 +16,10 @@ st.title('Pokémon TCGP Ranked Sims')
 st.text(
     '''
     Enter a Win Rate and initial number of points and this app will simulate thousands of seasons at that win rate and starting points value to determine how many games need to be played to reach Master Ball rank. 
+    
     Seasons take into consideration win streak bonuses and rank-specific loss penalties. 
-    Win rates under 0.400 take too long to simulate, and aren't guaranteed to reach Master Ball rank
+    
+    Win rates under 0.400 take too long to simulate, and aren't guaranteed to reach Master Ball rank. Win rates above 0.800 aren't included, because they make me jealous.
     '''
 )
 
@@ -243,3 +245,4 @@ def load_logo():
     
 logo = load_logo()
 st.image(logo, width=200)
+st.write('Find me at [@blandalytics.pitcherlist.com](https://bsky.app/profile/blandalytics.pitcherlist.com)')

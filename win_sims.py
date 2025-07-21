@@ -98,13 +98,13 @@ win_rate_dict = {
     0.8: 117.115
     }
 
-col1, col2 = st.columns(2)
+col1, col2, col3, col4, col5 = st.columns(5)
 # Input Variables
-with col1:
+with col2:
     win_rate = st.number_input("Win rate:", 
                                min_value=0.4, max_value=0.8, value=0.6,
                                step=0.001, format="%0.3f")
-with col2:
+with col4:
     initial_points = st.number_input("Starting Points:", min_value=0, max_value=1225)
     sim_seasons = int(round(1000*10**(10*(min(win_rate,0.5)-0.4))))
     needed_battles = int(win_rate_dict[int(round(win_rate*100,0))/100]*sim_seasons)
